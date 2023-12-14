@@ -1,0 +1,14 @@
+Implement:
+	A menu system
+		Play
+			1 Player or 2 Player
+				1 Player loads scene with AI Opponent
+				2 Player loads scene with Opponent controlled w/ arrow keys
+		Options
+			change speed + color of player, opponent, and ball
+			how many points to win
+			best of series (bo3, bo5, etc...)
+			
+	Particle effects trailing ball + player / opponent
+	Have them all emit light (neon, like the wii version)
+		
