@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://detgeckfdyvcx"]
+
+[ext_resource type="Texture2D" uid="uid://dycf2yxwv73qe" path="res://icon.svg" id="1_6m04m"]
+[ext_resource type="Script" path="res://Scenes/level.gd" id="1_ua6v7"]
+[ext_resource type="PackedScene" uid="uid://bypnftrs2jash" path="res://Scenes/player.tscn" id="2_asfug"]
+[ext_resource type="PackedScene" uid="uid://bheq404xc1tn3" path="res://Scenes/opponent.tscn" id="3_a55jh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xakcl"]
+size = Vector2(1299, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjp3r"]
+size = Vector2(1319, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hljc"]
+size = Vector2(30, 730)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_ua6v7")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(690, 357)
+scale = Vector2(16.4453, 9.78125)
+texture = ExtResource("1_6m04m")
+metadata/_edit_lock_ = true
+
+[node name="Boundary" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+metadata/_edit_lock_ = true
+
+[node name="BoundaryShape" type="CollisionPolygon2D" parent="Boundary"]
+polygon = PackedVector2Array(0, -27, 0, 0, 0, 720, 1280, 720, 1280, 0, 0, 0, 0, -27, 1287, -20, 1299, 733, 87.4023, 746.744, 31, 748, -22, 750, -21.3032, 681.405, -26, -25)
+
+[node name="Top" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+position = Vector2(639.5, -12.5)
+shape = SubResource("RectangleShape2D_xakcl")
+
+[node name="Bottom" type="Area2D" parent="."]
+position = Vector2(1, 733)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
+position = Vector2(640.5, -1)
+shape = SubResource("RectangleShape2D_qjp3r")
+
+[node name="Player" parent="." instance=ExtResource("2_asfug")]
+position = Vector2(60, 360)
+
+[node name="Opponent" parent="." instance=ExtResource("3_a55jh")]
+position = Vector2(1220, 360)
+
+[node name="PlayerGoal" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerGoal"]
+position = Vector2(5, 355)
+shape = SubResource("RectangleShape2D_8hljc")
+
+[node name="OpponentGoal" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OpponentGoal"]
+position = Vector2(1273, 361)
+shape = SubResource("RectangleShape2D_8hljc")
+
+[connection signal="body_entered" from="Top" to="." method="_on_top_body_entered"]
+[connection signal="body_entered" from="Bottom" to="." method="_on_bottom_body_entered"]
+[connection signal="body_entered" from="PlayerGoal" to="." method="_on_player_goal_body_entered"]
+[connection signal="body_entered" from="OpponentGoal" to="." method="_on_opponent_goal_body_entered"]

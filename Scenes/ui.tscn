@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://c600ep6j5h7os"]
+
+[ext_resource type="Script" path="res://Scenes/ui.gd" id="1_v3ept"]
+
+[sub_resource type="Theme" id="Theme_bis0y"]
+default_font_size = 40
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_v3ept")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_bis0y")
+
+[node name="PlayerScoreMargin" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 320
+theme_override_constants/margin_top = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PlayerScoreMargin"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PlayerScoreMargin/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayerScore" type="Label" parent="Control/PlayerScoreMargin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0
+"
+
+[node name="OpponentScoreMargin" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 960
+theme_override_constants/margin_top = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/OpponentScoreMargin"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/OpponentScoreMargin/VBoxContainer"]
+layout_mode = 2
+
+[node name="OpponentScore" type="Label" parent="Control/OpponentScoreMargin/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0
+"

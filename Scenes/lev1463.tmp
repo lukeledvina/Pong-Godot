@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://detgeckfdyvcx"]
+
+[ext_resource type="Texture2D" uid="uid://dycf2yxwv73qe" path="res://icon.svg" id="1_6m04m"]
+[ext_resource type="PackedScene" uid="uid://bypnftrs2jash" path="res://Scenes/player.tscn" id="2_asfug"]
+[ext_resource type="PackedScene" uid="uid://bheq404xc1tn3" path="res://Scenes/opponent.tscn" id="3_a55jh"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Boundary" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="BoundaryShape" type="CollisionPolygon2D" parent="Boundary"]
+polygon = PackedVector2Array(0, -27, 0, 0, 0, 720, 1280, 720, 1280, 0, 0, 0, 0, -27, 1287, -20, 1299, 733, 1249, 733, 87.4023, 746.744, 31, 748, -22, 750, -21.3032, 681.405, -26, -25)
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(690, 357)
+scale = Vector2(16.4453, 9.78125)
+texture = ExtResource("1_6m04m")
+
+[node name="Player" parent="." instance=ExtResource("2_asfug")]
+position = Vector2(60, 360)
+
+[node name="Opponent" parent="." instance=ExtResource("3_a55jh")]
+position = Vector2(1220, 360)

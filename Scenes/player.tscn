@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bypnftrs2jash"]
+
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_chb4s"]
+[ext_resource type="Texture2D" uid="uid://dycf2yxwv73qe" path="res://icon.svg" id="1_ska3t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1njn6"]
+size = Vector2(22, 144)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7nxo"]
+size = Vector2(30, 142)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2l82j"]
+size = Vector2(18, 148)
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 6
+script = ExtResource("1_chb4s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 1, 1)
+scale = Vector2(0.1875, 1.14063)
+texture = ExtResource("1_ska3t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1njn6")
+
+[node name="BounceZone" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BounceZone"]
+shape = SubResource("RectangleShape2D_v7nxo")
+
+[node name="TopBounce" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBounce"]
+shape = SubResource("RectangleShape2D_2l82j")
+
+[connection signal="body_entered" from="BounceZone" to="." method="_on_bounce_zone_body_entered"]
+[connection signal="body_entered" from="TopBounce" to="." method="_on_top_bounce_body_entered"]
