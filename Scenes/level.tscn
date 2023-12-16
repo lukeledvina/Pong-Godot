@@ -80,3 +80,4 @@ shape = SubResource("RectangleShape2D_8hljc")
 [connection signal="body_entered" from="Bottom" to="." method="_on_bottom_body_entered"]
 [connection signal="body_entered" from="PlayerGoal" to="." method="_on_player_goal_body_entered"]
 [connection signal="body_entered" from="OpponentGoal" to="." method="_on_opponent_goal_body_entered"]
+[connection signal="game_finished" from="UI" to="." method="_on_ui_game_finished"]

@@ -7,6 +7,8 @@ extends CanvasLayer
 @onready var player_game_count_container = $Control/Player1GameCount
 @onready var opponent_game_count_container = $Control/Player2GameCount
 
+signal game_finished()
+
 var winning_score: int = 1
 var game_count_to_win: int = 2
 
@@ -38,9 +40,15 @@ func update_score_label(score_label, score, container, win_count):
 	if score == winning_score:
 		if win_count == 1:
 			game_count_images[0].show()
+			emit_signal("game_finished")
+			await get_tree().create_timer(1.5).timeout
+			player_score = 0
+			opponent_score = 0
 		elif win_count == game_count_to_win:
 			game_count_images[1].show()
+			game_count_images[2].show()
+			emit_signal("game_finished")
+			await get_tree().create_timer(2).timeout
 			get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
-		player_score = 0
-		opponent_score = 0
+
 		

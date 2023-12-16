@@ -7,17 +7,20 @@ var ball_scene = preload("res://Scenes/ball.tscn")
 
 var ball
 
+var game_active: bool = true
+
 var ball_in_tree: bool = false
 
 @onready var opponent = $Opponent
 
 
 func spawn_new_ball():
-	var starting_pos = randi_range(100,620)
-	ball = ball_scene.instantiate()
-	add_child(ball)
-	ball.global_position = Vector2(640, starting_pos)
-	ball_in_tree = true
+	if game_active:		
+		var starting_pos = randi_range(100,620)
+		ball = ball_scene.instantiate()
+		add_child(ball)
+		ball.global_position = Vector2(640, starting_pos)
+		ball_in_tree = true
 	
 func _ready():
 	await get_tree().create_timer(2).timeout
@@ -49,12 +52,14 @@ func _on_player_goal_body_entered(body):
 	Ui.opponent_score += 1
 	body.queue_free()
 	ball_in_tree = false
+	await get_tree().create_timer(2.05).timeout
 	call_deferred("spawn_new_ball")
 
 func _on_opponent_goal_body_entered(body):
 	Ui.player_score += 1
 	body.queue_free()
 	ball_in_tree = false
+	await get_tree().create_timer(2.05).timeout
 	call_deferred("spawn_new_ball")
 
 func _on_bottom_body_entered(body):
@@ -62,3 +67,9 @@ func _on_bottom_body_entered(body):
 
 func _on_top_body_entered(body):
 	body.direction.y = -body.direction.y
+
+
+func _on_ui_game_finished():
+	game_active = false
+	await get_tree().create_timer(2).timeout
+	game_active = true
