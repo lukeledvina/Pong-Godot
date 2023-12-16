@@ -10,13 +10,15 @@ func _on_play_button_pressed():
 
 
 func _on_back_button_pressed():
-	if $MarginContainer/PlayOptions.visible:
+	if $MarginContainer/PlayOptions.visible or $MarginContainer/OptionsMenu.visible:
 		$MarginContainer/PlayOptions.hide()
+		$MarginContainer/OptionsMenu.hide()
 		$MarginContainer/StartingOptions.show()
 		
 
 func _on_options_button_pressed():
-	pass # Replace with function body.
+	$MarginContainer/StartingOptions.hide()
+	$MarginContainer/OptionsMenu.show()
 
 
 func _on_one_player_button_pressed():
@@ -25,3 +27,8 @@ func _on_one_player_button_pressed():
 
 func _on_two_player_button_pressed():
 	get_tree().change_scene_to_packed(level_2p)
+
+
+func _on_text_edit_text_changed():
+	Globals.winning_score = int($MarginContainer/OptionsMenu/TextEdit.text)
+	

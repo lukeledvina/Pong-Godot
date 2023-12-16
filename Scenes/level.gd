@@ -32,6 +32,8 @@ func _ready():
 	opponent.connect("side_bounce", _on_opponent_side_bounce)
 	opponent.connect("top_bounce", _on_opponent_top_bounce)
 	
+	Ui.winning_score = Globals.winning_score
+	
 
 
 func _on_player_side_bounce(body):

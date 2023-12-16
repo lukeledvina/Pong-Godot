@@ -70,6 +70,17 @@ layout_mode = 2
 text = "2 Players
 "
 
+[node name="OptionsMenu" type="VBoxContainer" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/OptionsMenu"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Score Needed To Win"
+
 [node name="BackButton" type="Button" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -82,4 +93,5 @@ text = "Back
 [connection signal="pressed" from="MarginContainer/StartingOptions/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MarginContainer/PlayOptions/OnePlayerButton" to="." method="_on_one_player_button_pressed"]
 [connection signal="pressed" from="MarginContainer/PlayOptions/TwoPlayerButton" to="." method="_on_two_player_button_pressed"]
+[connection signal="text_changed" from="MarginContainer/OptionsMenu/TextEdit" to="." method="_on_text_edit_text_changed"]
 [connection signal="pressed" from="MarginContainer/BackButton" to="." method="_on_back_button_pressed"]

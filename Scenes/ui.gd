@@ -9,7 +9,7 @@ extends CanvasLayer
 
 signal game_finished()
 
-var winning_score: int = 1
+var winning_score: int = Globals.winning_score
 var game_count_to_win: int = 2
 
 var player_1_win_count: int = 0
