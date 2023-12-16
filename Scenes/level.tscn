@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://detgeckfdyvcx"]
+[gd_scene load_steps=9 format=3 uid="uid://detgeckfdyvcx"]
 
 [ext_resource type="Texture2D" uid="uid://dycf2yxwv73qe" path="res://icon.svg" id="1_6m04m"]
 [ext_resource type="Script" path="res://Scenes/level.gd" id="1_ua6v7"]
 [ext_resource type="PackedScene" uid="uid://bypnftrs2jash" path="res://Scenes/player.tscn" id="2_asfug"]
+[ext_resource type="PackedScene" uid="uid://c600ep6j5h7os" path="res://Scenes/ui.tscn" id="2_t47kw"]
 [ext_resource type="PackedScene" uid="uid://bheq404xc1tn3" path="res://Scenes/opponent.tscn" id="3_a55jh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xakcl"]
@@ -72,6 +73,8 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OpponentGoal"]
 position = Vector2(1273, 361)
 shape = SubResource("RectangleShape2D_8hljc")
+
+[node name="UI" parent="." instance=ExtResource("2_t47kw")]
 
 [connection signal="body_entered" from="Top" to="." method="_on_top_body_entered"]
 [connection signal="body_entered" from="Bottom" to="." method="_on_bottom_body_entered"]

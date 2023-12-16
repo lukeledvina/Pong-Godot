@@ -1,7 +1,9 @@
 extends Node2D
+class_name Level
 
 var ball_scene = preload("res://Scenes/ball.tscn")
 
+@onready var Ui = $UI
 
 var ball
 
@@ -24,27 +26,11 @@ func _ready():
 	$Player.connect("side_bounce", _on_player_side_bounce)
 	$Player.connect("top_bounce", _on_player_top_bounce)
 	
-	$Opponent.connect("side_bounce", _on_opponent_side_bounce)
-	$Opponent.connect("top_bounce", _on_opponent_top_bounce)
+	opponent.connect("side_bounce", _on_opponent_side_bounce)
+	opponent.connect("top_bounce", _on_opponent_top_bounce)
 	
-func _process(_delta):
-	
-	
-	if ball_in_tree && ball.global_position.x > 640 && ball.linear_velocity.x > 0:
-		if ball.global_position.y > opponent.global_position.y:
-			opponent.velocity.y = 300
-		elif ball.global_position.y <= opponent.global_position.y:
-			opponent.velocity.y = -300
-	elif ball_in_tree && ball.linear_velocity.x < 0:
-		opponent.velocity.y = 0
-	#elif ball_in_tree && (ball.global_position.x <= (1280/2)):
-		#if opponent.global_position.y == 720/2:
-			#opponent.velocity.y = 0
-		#elif opponent.global_position.y > 720/2:
-			#opponent.velocity.y = -300
-		#elif opponent.global_position.y < 720/2:
-			#opponent.velocity.y = 300
-			
+
+
 func _on_player_side_bounce(body):
 	body.direction.x = -body.direction.x
 	ball.speed += 50
